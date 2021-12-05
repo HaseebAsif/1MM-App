@@ -5,6 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
+import { Link } from 'react-router-dom'
 import config from './config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
@@ -16,25 +17,34 @@ const Menu = (props) => {
   const { currentLanguage, setLanguage, t } = useTranslation()
 
   return (
-    <UikitMenu
-      userMenu={<UserMenu />}
-      globalMenu={<GlobalSettings />}
-      isDark={isDark}
-      toggleTheme={toggleTheme}
-      currentLang={currentLanguage.code}
-      langs={languageList}
-      setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
-      links={config(t)}
-      profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
-      }}
-      {...props}
-    />
+    <>
+      <Link to="/" style={{ display: 'block' }}>
+        <img
+          src="/logo.png"
+          alt=""
+          style={{ position: 'absolute', left: '70px', height: '35px', width: '35px', top: '15px', zIndex: 999 }}
+        />
+      </Link>
+      <UikitMenu
+        userMenu={<UserMenu />}
+        globalMenu={<GlobalSettings />}
+        isDark={isDark}
+        toggleTheme={toggleTheme}
+        currentLang={currentLanguage.code}
+        langs={languageList}
+        setLang={setLanguage}
+        cakePriceUsd={cakePriceUsd.toNumber()}
+        links={config(t)}
+        profile={{
+          username: profile?.username,
+          image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+          profileLink: '/profile',
+          noProfileLink: '/profile',
+          showPip: !profile?.username,
+        }}
+        {...props}
+      />
+    </>
   )
 }
 

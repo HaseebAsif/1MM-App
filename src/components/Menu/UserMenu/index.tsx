@@ -36,9 +36,6 @@ const UserMenu = () => {
 
   return (
     <>
-      <Link to="/">
-        <img src="/logo.png" alt="" style={{ position: 'absolute', left: '70px', height: '35px' }} />
-      </Link>
       <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
         <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
         <UserMenuItem as="button" onClick={onPresentTransactionModal}>
